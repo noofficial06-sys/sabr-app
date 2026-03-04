@@ -49,7 +49,7 @@
         <p>Выберите премиум подписку</p>
     </div>
 
-    <div class="card" onclick="selectTariff('buy_sub_30')">
+    <div class="card" onclick="selectTariff(30)">
         <div class="info">
             <h2>🥉 1 Месяц</h2>
             <p>Базовый доступ</p>
@@ -57,7 +57,7 @@
         <div class="price">149 ₽</div>
     </div>
 
-    <div class="card" onclick="selectTariff('buy_sub_90')">
+    <div class="card" onclick="selectTariff(90)">
         <div class="info">
             <h2>🥈 3 Месяца</h2>
             <p>Выгодный старт</p>
@@ -65,7 +65,7 @@
         <div class="price">399 ₽</div>
     </div>
 
-    <div class="card" onclick="selectTariff('buy_sub_180')">
+    <div class="card" onclick="selectTariff(180)">
         <div class="info">
             <h2>🥇 6 Месяцев</h2>
             <p>Оптимальный выбор</p>
@@ -73,7 +73,7 @@
         <div class="price">749 ₽</div>
     </div>
 
-    <div class="card" onclick="selectTariff('buy_sub_365')">
+    <div class="card" onclick="selectTariff(365)">
         <div class="info">
             <h2>🏆 12 Месяцев</h2>
             <p>Максимальная экономия</p>
@@ -83,14 +83,15 @@
 
     <script>
         let tg = window.Telegram.WebApp;
-        tg.expand(); // Сразу открываем на весь экран
+        tg.expand(); // Разворачиваем на весь экран
 
-        function selectTariff(tariffId) {
-            // Легкая вибрация на iPhone при нажатии
-            tg.HapticFeedback.impactOccurred('light');
-            
-            // Отправляем секретный код боту (как если бы нажали инлайн-кнопку)
-            tg.sendData(tariffId);
+        // 🔴 ВАЖНО: ВПИШИТЕ В КАВЫЧКИ ЮЗЕРНЕЙМ ВАШЕГО БОТА (без @)
+        const BOT_USERNAME = "magich06_vpn_bot"; 
+
+        function selectTariff(days) {
+            tg.HapticFeedback.impactOccurred('light'); // Вибрация при клике
+            let link = `https://t.me/${BOT_USERNAME}?start=buy_${days}`;
+            tg.openTelegramLink(link);
         }
     </script>
 </body>
